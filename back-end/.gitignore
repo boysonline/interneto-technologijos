@@ -1,10 +1,2 @@
-# Binaries
-bin/
-*.exe
-*.test
-
-# Environment variables (Secrets!)
 .env
-
-# Dependencies (Go will re-download these using go.mod)
-vendor/
+.gitignore
