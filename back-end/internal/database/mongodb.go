@@ -3,10 +3,9 @@ package database
 import (
 	"context"
 	"log"
-	"os" // Built-in package to read environment variables
+	"os"
 	"time"
 
-	"github.com/joho/godotenv" // The library you just installed
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -14,13 +13,8 @@ import (
 var Client *mongo.Client
 
 func Connect() {
-	// 1. Load the .env file
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	var err error
 
-	// 2. Get the value using os.Getenv
 	mongoURI := os.Getenv("MONGO_URI")
 	if mongoURI == "" {
 		log.Fatal("MONGO_URI not found in .env")
@@ -35,6 +29,16 @@ func Connect() {
 	if err != nil {
 		log.Fatal("Connection failed:", err)
 	}
+	err = Client.Ping(ctx, nil)
+	if err != nil {
+		log.Fatal("Could not ping MongoDB:", err)
+	}
+}
 
-	// ... rest of your ping logic
+func Collection(collection string) *mongo.Collection {
+	database := os.Getenv("DATABASE_NAME")
+	if database == "" {
+		log.Fatal("DATABASE_NAME variable is missing from .env")
+	}
+	return Client.Database(database).Collection(collection)
 }
