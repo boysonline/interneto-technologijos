@@ -29,7 +29,7 @@ func main() {
 	if port == "" {
 		port = "8080" // Fallback for local testing
 	}
-	if os.Getenv("ENV") == "production" {
+	if os.Getenv("ENV") == "development" {
 		r.Run(":" + port)
 	} else {
 		log.Fatal(r.RunTLS(":"+port, "./cert.pem", "./key.pem"))
