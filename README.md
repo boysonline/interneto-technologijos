@@ -65,12 +65,11 @@ AUTH_SECRET=your_super_secret_jwt_key
 ```
 ### 3. Installation & Running
 
-Clone the repository and navigate into the project directory:
+Clone the repository, navigate into the project directory and start the server:
 ```bash
-git clone [https://github.com/boysonline/Sorter.git](https://github.com/boysonline/Sorter.git)
-cd Sorter
+git clone [https://github.com/boysonline/interneto-technologijos.git](https://github.com/boysonline/interneto-technologijos.git)
+cd interneto-technologijos
 go mod download
-Start the backend server:
 go run main.go
 ```
 # API Documentation
